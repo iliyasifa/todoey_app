@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/task_data.dart';
 import '../widgets/tasks_list.dart';
-import 'add_task_screen.dart';
+import './add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -12,24 +12,6 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: const Icon(Icons.add),
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (context) => SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                ),
-                child: const AddTaskScreen(),
-              ),
-            ),
-          );
-        },
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +24,7 @@ class TasksScreen extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: [
                 const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30.0,
@@ -87,6 +69,24 @@ class TasksScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlueAccent,
+        child: const Icon(Icons.add),
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: const AddTaskScreen(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
